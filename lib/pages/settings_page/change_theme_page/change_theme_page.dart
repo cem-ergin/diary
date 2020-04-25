@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gunluk/misc/constants.dart';
 import 'package:gunluk/providers/theme_provider.dart';
 import 'package:gunluk/themes/theme.dart';
 import 'package:provider/provider.dart';
@@ -35,11 +36,11 @@ class _ChangeThemePageState extends State<ChangeThemePage> {
     yellowTheme //19
   ];
 
-  // Future<void> setThemeToSharedPreferences(int index) async {
-  //   //!Theme indexi SharedPreferences'a kaydedilir.
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   prefs.setInt(SharedPrefs.ThemePref, index);
-  // }
+  Future<void> setThemeToSharedPreferences(int index) async {
+    //!Theme indexi SharedPreferences'a kaydedilir.
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt(SharedPrefs.ThemePref, index);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +61,9 @@ class _ChangeThemePageState extends State<ChangeThemePage> {
             return GestureDetector(
               onTap: () async {
                 try {
-                  // Provider.of<ThemeProvider>(context, listen: false)
-                  //     .changeTheme(themeData[index]);
-                  //setThemeToSharedPreferences(index);
+                  Provider.of<ThemeProvider>(context, listen: false)
+                      .changeTheme(themeData[index]);
+                  setThemeToSharedPreferences(index);
                   print("shared pref save is successful");
                 } catch (e) {
                   print("there is an error: " + e.toString());
