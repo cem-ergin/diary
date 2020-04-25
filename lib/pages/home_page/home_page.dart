@@ -14,6 +14,15 @@ class _HomePageState extends State<HomePage> {
       drawer: Drawer(),
       appBar: AppBar(
         title: Text('Anasayfa'),
+        centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.pushNamed(context, "/settingsPage");
+            },
+          )
+        ],
       ),
       body: Container(),
     );
