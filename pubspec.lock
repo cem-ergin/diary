@@ -299,6 +299,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  slider_button:
+    dependency: "direct main"
+    description:
+      name: slider_button
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.0"
   source_span:
     dependency: transitive
     description:
@@ -306,6 +313,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.5"
+  spring_button:
+    dependency: "direct main"
+    description:
+      name: spring_button
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.13"
   sqflite:
     dependency: "direct main"
     description:

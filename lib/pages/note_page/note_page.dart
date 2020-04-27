@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gunluk/pages/note_page/ui/gallery_camera_view.dart';
 import 'package:gunluk/shared/date_helper.dart';
+import 'package:slider_button/slider_button.dart';
 
 class NotePage extends StatefulWidget {
   NotePage({Key key}) : super(key: key);
@@ -40,7 +42,7 @@ class _NotePageState extends State<NotePage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                    '${DateHelper().getMonthAndDay(DateTime.now())} | ${myTextController.text.length} karakter'),
+                    '${DateHelper().getMMMMd(DateTime.now())} | ${myTextController.text.length} karakter'),
               ),
               Expanded(
                 child: Container(
@@ -76,11 +78,7 @@ class _NotePageState extends State<NotePage> {
               Row(
                 children: <Widget>[
                   Expanded(
-                    child: IconButton(
-                      // icon: FaIcon(FontAwesomeIcons.cameraRetro),
-                      icon: Icon(Icons.photo_album),
-                      onPressed: () {},
-                    ),
+                    child: GalleryCameraViewNotePage(),
                   ),
                   Expanded(
                     child: IconButton(
@@ -97,7 +95,57 @@ class _NotePageState extends State<NotePage> {
                   Expanded(
                     child: IconButton(
                       icon: FaIcon(FontAwesomeIcons.voicemail),
-                      onPressed: () {},
+                      onPressed: () {
+                        showGeneralDialog(
+                          barrierLabel: "Label",
+                          barrierDismissible: true,
+                          barrierColor: Colors.black.withOpacity(0.5),
+                          transitionDuration: Duration(milliseconds: 350),
+                          context: context,
+                          pageBuilder: (context, anim1, anim2) {
+                            return Align(
+                              alignment: Alignment.bottomRight,
+                              child: Container(
+                                child: SliderButton(
+                                  vibrationFlag: true,
+                                  action: () {
+                                    Navigator.pop(context);
+                                  },
+                                  label: Text(
+                                    "Ses kaydi icin kaydir",
+                                    style: TextStyle(
+                                      color: Color(0xff4a4a4a),
+                                      //fontWeight: FontWeight.w500,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  icon: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Icon(Icons.fiber_smart_record),
+                                  ),
+                                ),
+                                margin: EdgeInsets.only(
+                                    bottom: 50, left: 12, right: 12),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.9),
+                                  //color: Colors.white,
+                                  borderRadius: BorderRadius.circular(40),
+                                ),
+                              ),
+                            );
+                          },
+                          transitionBuilder: (context, anim1, anim2, child) {
+                            return SlideTransition(
+                              position:
+                                  Tween(begin: Offset(1, 1), end: Offset(0, 0))
+                                      .animate(anim1),
+                              child: child,
+                            );
+                          },
+                        );
+                      },
                     ),
                   ),
                 ],
