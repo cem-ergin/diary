@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gunluk/constants/google_text_themes.dart';
+import 'package:gunluk/helpers/shared_preferences_helper.dart';
 import 'package:gunluk/providers/text_theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -24,17 +25,14 @@ class _ChangeFontPageState extends State<ChangeFontPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Yazi tipi degistir'),
+        title: Text('Yazı tipi'),
       ),
       body: ListView.separated(
         separatorBuilder: (BuildContext context, int index) => Divider(),
         itemCount: _myTextThemes.length,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
-            onTap: () {
-              Provider.of<TextThemeProvider>(context, listen: false)
-                  .changeTextTheme(_myTextThemes[index]);
-            },
+            onTap: () => onChangeFontPressed(context, index),
             title: Text(
               "Pijamalı hasta yağız şoföre çabucak güvendi, 1234567890.",
               style: _myTextThemes[index].bodyText1,
@@ -47,5 +45,16 @@ class _ChangeFontPageState extends State<ChangeFontPage> {
         },
       ),
     );
+  }
+
+  void onChangeFontPressed(BuildContext context, int index) {
+    try {
+      Provider.of<TextThemeProvider>(context, listen: false)
+          .changeTextTheme(_myTextThemes[index]);
+      SharedPreferencesHelper.setFontToSharedPreferences(index);
+      print("FONT shared pref save is successful");
+    } catch (e) {
+      print("FONT there is an error: " + e.toString());
+    }
   }
 }

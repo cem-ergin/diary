@@ -7,6 +7,11 @@ class SharedPreferencesHelper {
     prefs.setInt(SharedPreferencesConstants.THEME, index);
   }
 
+  static Future<void> setFontToSharedPreferences(int index) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt(SharedPreferencesConstants.FONT, index);
+  }
+
   // Future<void> getTheme(BuildContext context) async {
   //   final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
   //   SharedPreferences prefs = await SharedPreferences.getInstance();
