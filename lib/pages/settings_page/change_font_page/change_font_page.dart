@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:gunluk/constants/google_text_themes.dart';
 import 'package:gunluk/providers/text_theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -11,12 +11,13 @@ class ChangeFontPage extends StatefulWidget {
 }
 
 class _ChangeFontPageState extends State<ChangeFontPage> {
-  List<Map<String, TextStyle>> myStyles;
+  List<TextTheme> _myTextThemes;
+  List<String> _myTextThemeNames;
   @override
   void initState() {
     super.initState();
-    var asdf = GoogleFonts.asMap();
-    print(asdf.keys.elementAt(0));
+    _myTextThemes = MyGoogleTextThemes.getMyTextThemes();
+    _myTextThemeNames = MyGoogleTextThemes.getMyTextThemeStrings();
   }
 
   @override
@@ -27,29 +28,20 @@ class _ChangeFontPageState extends State<ChangeFontPage> {
       ),
       body: ListView.separated(
         separatorBuilder: (BuildContext context, int index) => Divider(),
-        itemCount: GoogleFonts.asMap().length,
+        itemCount: _myTextThemes.length,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
             onTap: () {
               Provider.of<TextThemeProvider>(context, listen: false)
-                  .changeTextTheme(
-                GoogleFonts.getTextTheme(
-                  GoogleFonts.asMap().keys.elementAt(index),
-                ),
-              );
+                  .changeTextTheme(_myTextThemes[index]);
             },
             title: Text(
-              "Ornek yazi denemesi, 1234567890",
-              style: GoogleFonts.getFont(
-                GoogleFonts.asMap().keys.elementAt(index),
-              ),
+              "Pijamalı hasta yağız şoföre çabucak güvendi, 1234567890.",
+              style: _myTextThemes[index].bodyText1,
             ),
             subtitle: Text(
-              "${GoogleFonts.asMap().keys.elementAt(index)}",
-              style: GoogleFonts.getFont(
-                GoogleFonts.asMap().keys.elementAt(index),
-                color: Colors.grey,
-              ),
+              "${_myTextThemeNames[index]}",
+              style: _myTextThemes[index].bodyText1,
             ),
           );
         },
