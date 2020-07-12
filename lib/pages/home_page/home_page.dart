@@ -32,6 +32,10 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: Container(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.pushNamed(context, "/notePage"),
+        child: Icon(Icons.add),
+      ),
     );
   }
 }

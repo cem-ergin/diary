@@ -78,6 +78,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
+  esys_flutter_share:
+    dependency: "direct main"
+    description:
+      name: esys_flutter_share
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -139,7 +146,7 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.0+4"
+    version: "0.12.1"
   http_parser:
     dependency: transitive
     description:
@@ -160,7 +167,14 @@ packages:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.5+2"
+    version: "0.6.7+4"
+  image_picker_platform_interface:
+    dependency: transitive
+    description:
+      name: image_picker_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   intl:
     dependency: transitive
     description:
@@ -299,13 +313,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-  slider_button:
-    dependency: "direct main"
-    description:
-      name: slider_button
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.5.0"
   source_span:
     dependency: transitive
     description:
@@ -313,13 +320,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
-  spring_button:
-    dependency: "direct main"
-    description:
-      name: spring_button
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.13"
   sqflite:
     dependency: "direct main"
     description:

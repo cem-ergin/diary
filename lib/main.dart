@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gunluk/pages/home_page/home_page.dart';
+import 'package:gunluk/providers/diary_provider.dart';
 import 'package:gunluk/providers/text_theme_provider.dart';
 import 'package:gunluk/routes/route_generator.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +18,9 @@ void main() {
         ),
         ChangeNotifierProvider<TextThemeProvider>(
           create: (_) => TextThemeProvider(),
+        ),
+        ChangeNotifierProvider<DiaryProvider>(
+          create: (_) => DiaryProvider(),
         ),
       ],
       child: MyApp(),

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gunluk/helpers/image_picker_helper.dart';
+import 'package:gunluk/providers/diary_provider.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class GalleryCameraViewNotePage extends StatelessWidget {
   const GalleryCameraViewNotePage({Key key}) : super(key: key);
@@ -78,22 +81,16 @@ class GalleryCameraViewNotePage extends StatelessWidget {
   }
 
   Future<void> onGalleryPressed(BuildContext context) async {
-    try {
-      var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-      print(image.path);
-      Navigator.pop(context);
-    } catch (e) {
-      print("onGalleryPressed error: " + e.toString());
-    }
+    String imagePath =
+        await ImagePickerHelper(context: context).getImageFromGallery();
+    Provider.of<DiaryProvider>(context, listen: false).addImage(imagePath);
+    Navigator.pop(context);
   }
 
   Future<void> onCameraPressed(BuildContext context) async {
-    try {
-      var image = await ImagePicker.pickImage(source: ImageSource.camera);
-      print(image.path);
-      Navigator.pop(context);
-    } catch (e) {
-      print("error: " + e.toString());
-    }
+    String imagePath =
+        await ImagePickerHelper(context: context).getImageFromCamera();
+    Provider.of<DiaryProvider>(context, listen: false).addImage(imagePath);
+    Navigator.pop(context);
   }
 }
